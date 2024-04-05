@@ -12,9 +12,9 @@
     {% endif %}
   </head>
   <body>
-    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar sticky-top navbar-expand-lg bg-primary-subtle">
       <div class="container">
-        <a class="navbar-brand" href="#">Django Blog</a>
+        <a class="navbar-brand" href="{% url 'blog-home' %}">Django Blog</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -41,6 +41,7 @@
             </li>
           </ul>
           <ul class="navbar-nav mb-2 mb-lg-0">
+            {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="">New Post</a>
             </li>
@@ -48,14 +49,16 @@
               <a class="nav-link" href="">Profile</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="">Login</a>
+              <a class="nav-link" href="{% url 'users-logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users-login' %}">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="">Register</a>
+              <a class="nav-link" href="{% url 'users-register' %}">Register</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="">Logout</a>
-            </li>
+            {% endif %}
           </ul>
         </div>
       </div>
